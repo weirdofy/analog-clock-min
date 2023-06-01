@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analog Clock</title>
+  </head>
+  <body>
+    <div class="clock">
+      <div id="indicators"></div>
+      <div class="hour">
+        <div id="hr"></div>
+      </div>
+      <div class="minute">
+        <div id="min"></div>
+      </div>
+      <div class="second">
+        <div id="sec"></div>
+      </div>
+    </div>
+  </body>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+      background: #040615;
+    }
+
+    .clock {
+      width: 35em;
+      height: 35em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 5px solid rgb(165, 204, 255);
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+    }
+
+    .clock::before {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #2196f3;
+      z-index: 10;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+    }
+
+    .hour,
+    .minute,
+    .sec {
+      position: absolute;
+    }
+
+    .hour,
+    #hr {
+      width: 300px;
+      height: 300px;
+    }
+
+    .minute,
+    #min {
+      width: 350px;
+      height: 350px;
+    }
+
+    .second,
+    #sec {
+      width: 375px;
+      height: 375px;
+    }
+
+    #hr,
+    #min,
+    #sec {
+      display: flex;
+      justify-content: center;
+      position: absolute;
+    }
+
+    #hr::before {
+      content: "";
+      position: absolute;
+      width: 5px;
+      height: 150px;
+      background: rgb(2, 247, 178);
+      border-radius: 10px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      -ms-border-radius: 10px;
+      -o-border-radius: 10px;
+    }
+
+    #min::before {
+      content: "";
+      position: absolute;
+      width: 3px;
+      height: 175px;
+      background: rgb(2, 247, 178);
+      border-radius: 10px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      -ms-border-radius: 10px;
+      -o-border-radius: 10px;
+    }
+
+    #sec::before {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 190px;
+      background: #2196f3;
+      border-radius: 10px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      -ms-border-radius: 10px;
+      -o-border-radius: 10px;
+    }
+  </style>
+
+  <script>
+    let hr = document.querySelector("#hr"),
+      min = document.querySelector("#min"),
+      sec = document.querySelector("#sec");
+
+    setInterval(() => {
+      let day = new Date();
+
+      let hh = day.getHours() * 30,
+        mm = day.getMinutes() * 6,
+        ss = day.getSeconds() * 6;
+
+      hr.style.transform = `rotateZ(${hh + mm / 12}deg)`;
+      min.style.transform = `rotateZ(${mm}deg)`;
+      sec.style.transform = `rotateZ(${ss}deg)`;
+    });
+  </script>
+</html>
